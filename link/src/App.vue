@@ -19,7 +19,10 @@
             <v-list-item-subtitle>Иван Иванов</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-        <v-divider class="my-3"/>
+        <v-divider  class="mx-4"
+                    :inset="inset"
+                    vertical>
+        </v-divider>
         <v-list-item link 
                           :to="link.path"
                           :key="link.path"
@@ -42,6 +45,7 @@
   </v-app>
 </template>
 <script>
+
 export default {
   data(){
     return {
@@ -53,12 +57,18 @@ export default {
         },
         {
           label: "Профиль",
-          path: '/profile', 
+          path: '/profile/', 
           icon: "mdi-account"
+        },
+        {
+          label: "Добавить друзей",
+          path: '/friends', 
+          icon: "mdi-account-multiple-plus-outline"
         },
       ]
     }
-  }
+  },
+
 }
 </script>
 <style lang="scss">
