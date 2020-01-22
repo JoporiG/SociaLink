@@ -57,7 +57,7 @@ export default {
         },
         {
           label: "Профиль",
-          path: '/profile/', 
+          path: '/profile/7', 
           icon: "mdi-account"
         },
         {
