@@ -11,7 +11,7 @@
               dense>
         <v-list-item two-line>
           <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/men/1.jpg">
+            <img :src="IMG">
           </v-list-item-avatar>
 
           <v-list-item-content class="text-left">
@@ -39,7 +39,7 @@
     </v-navigation-drawer>
     <v-content class="px-12 py-3">
       <v-container fluid>
-        <router-view/>
+        <router-view @login="userUpdate($event)"/>
       </v-container>
     </v-content>
   </v-app>
@@ -57,7 +57,7 @@ export default {
         },
         {
           label: "Профиль",
-          path: '/profile/7', 
+          path: '', 
           icon: "mdi-account"
         },
         {
@@ -65,10 +65,24 @@ export default {
           path: '/friends', 
           icon: "mdi-account-multiple-plus-outline"
         },
-      ]
+      ],
+      profileId: '1',
     }
   },
-
+  methods:{
+    userUpdate(Id){
+      this.profileId = parseInt(Id) + 1;
+      this.changePath();
+    },
+    changePath(){
+      this.links[1].path = "/profile/" + this.profileId;
+    }
+  },
+  computed:{
+    IMG(){
+      return "https://randomuser.me/api/portraits/men/" + this.profileId + ".jpg";
+    }
+  }
 }
 </script>
 <style lang="scss">

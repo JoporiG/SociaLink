@@ -28,26 +28,25 @@
 export default {
     data(){
         return {
-
+            password: '',
+            login: '',
         }
     },
     methods:{
         AugBlin(){
-            this.axios.get('http://188.225.47.187/api/jsonstorage/74ff4079a6fdeafa809dcf0afe1a692c').then((response) => {
-                let users = response;
-                //console.log(users);
+            this.axios.get('http://188.225.47.187/api/jsonstorage/5aa4845713d4be4dfbbcd435684157d0').then((response) => {
+                let users = response.data.users;
                 let found = false;
                 for(let index in users){
-                    alert(users[index].login);
                     if(this.login == users[index].login && this.password == users[index].password){
-                        alert("sex");
+                        this.$emit('login', index);
                         this.$router.push('/profile/' + users[index].myId);
                         found = true;
                         break;
                     }
                 }
                 if(!found){
-                    alert('LOH');
+                    alert('Такого пользователя нет!');
                 }
             });
         }
