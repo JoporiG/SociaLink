@@ -1,6 +1,5 @@
 <template>
   <v-app id="app">
-    
     <!-- НАЧАЛО: Панель навигации -->
     <v-navigation-drawer
         color="green"
@@ -74,7 +73,7 @@
 
 
           <!-- Кнопка выхода из аккаунта -->
-          <v-list-item link @click="myId=''">
+          <v-list-item link @click="Exit">
             <v-list-item-icon>
               <v-icon>mdi-account-arrow-right-outline</v-icon>
             </v-list-item-icon>
@@ -154,6 +153,10 @@ export default {
       this.myId = data.id;
       this.myName = data.name;
       this.myPhoto = data.photo;
+    },
+    Exit(){
+      this.myId = '';
+      this.$store.dispatch("NewId", '');
     }
   }
 }

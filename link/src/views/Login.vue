@@ -20,6 +20,11 @@
                 Войти
             </v-btn>
         </v-card>
+        <v-footer>
+            <v-alert type="error" v-if="F == false">
+                Неправильный логин или пароль
+            </v-alert>
+        </v-footer>
     </div>
 </template>
 
@@ -29,10 +34,14 @@ export default {
     data(){
         return {
             login: '',
-            password: ''
+            password: '',
+            F: true,
         }
     },
     methods: {
+        PushId(index){
+            this.$store.dispatch("NewId", index);
+        },
         authenticate(){
             this.axios.get('http://188.225.47.187/api/jsonstorage/1915d243d1a84f86e4b00fbb1dd5559a')
                 .then(
@@ -42,22 +51,25 @@ export default {
 
                         for(let index in users){
                             if(this.login == users[index].login && this.password == users[index].password){
-
                                 this.$emit('login', {
                                   id: index,
                                   photo: users[index].photo,
                                   name: users[index].name
                                 });
-
+                                this.PushId(index);
                                 this.$router.push('/users/' + index);
                                 found = true;
                                 break;
                             }
                         }
-                        if(!found) window.alert('Неверный логин или пароль');
+                        if(!found) {
+                            console.log("udvgd")
+                            this.F = false;
+                        }
                     }
                 )
         }
+
     }
 }
 </script>

@@ -5,8 +5,8 @@
                 <h1 class="green--text text--darken-2">
                     <v-icon large color="green darken-2">mdi-account-outline</v-icon>
                     {{userData.name}}
+                    <v-btn color="green" @click="ChangeInfo">Редактировать</v-btn>
                 </h1>
-                <v-btn color="green" @click="ChangeInfo"/>
             </v-col>
         </v-row>
         <v-row class="text-left">

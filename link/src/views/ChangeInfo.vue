@@ -62,7 +62,6 @@
 <script>
 export default {
     name: 'ChangeInfo',
-    props: ["myId"],
     data(){
         return {
             // Свойства для реактивной привязки текстовых полей
@@ -73,20 +72,19 @@ export default {
             email: '',
             city: '',
             company: '',
-            photo: ''
+            photo: '',
+            myId: '',
         }
     },
 
     methods: {
 
         Saving(){
-            console.log(this.myId);
-            // Делаем запрос на сервер для получения списка всех пользователей
-            /*this.axios.get('http://188.225.47.187/api/jsonstorage/1915d243d1a84f86e4b00fbb1dd5559a')
+            this.myId = this.$store.getters.getId
+            this.axios.get('http://188.225.47.187/api/jsonstorage/1915d243d1a84f86e4b00fbb1dd5559a')
                 .then( (response)=>{
                     // Это список всех зарегистрированных пользователей
                     let userList = response.data;
-
                     // Создаем нового пользователя в том же формате, что остальные
                     let newUser = {
                         login: this.login,
@@ -98,22 +96,21 @@ export default {
                         company: this.company,
                         photo: this.photo
                     }
-
-                    // Добавим его в массив пользователей
-                    userList.push(newUser);
-
+                    userList.splice(this.myId, 1, newUser);
                     // Отправим обновленный массив пользователей на сервер
                     this.axios.put('http://188.225.47.187/api/jsonstorage/1915d243d1a84f86e4b00fbb1dd5559a', userList)
                         .then( 
                             (response)=>{
                                 // Если получилось, переводим на страницу входа
-                                if(response.data == "ok")
-                                    this.$router.push('/users/');
+                                if(response.data == "ok"){
+                                    this.$store.dispatch("NewId", '');
+                                    this.$router.push("/login");
+                                }
                                 else
                                     window.alert('Что-то пошло не так!');
                             } 
                         );
-                } )*/
+                } )
         }
     }
 }
