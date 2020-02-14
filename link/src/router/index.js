@@ -2,9 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
-import Friends from '../views/Friends.vue'
+import Users from '../views/Users.vue'
+import Registration from '../views/Registration.vue'
 import Login from '../views/Login.vue'
-import Register from '../views/Register.vue'
+import ChangeInfo from '../views/ChangeInfo.vue'
 
 Vue.use(VueRouter)
 
@@ -14,25 +15,27 @@ const routes = [
     name: 'home',
     component: Home
   },
+  // динамические сегменты начинаются с двоеточия
   {
-    path: '/profile/:id',
-    name: 'profile',
+    path:'/users/:id',
     component: Profile
   },
   {
-    path: '/friends',
-    name: 'friends',
-    component: Friends
-  }, 
+    path:'/users',
+    component: Users
+  },
+  {
+    path: '/registration',
+    component: Registration
+  },
   {
     path: '/login',
-    name: 'login',
     component: Login
-  },{
-    path: '/register',
-    name: 'register',
-    component: Register
   },
+  {
+    path: '/chInf',
+    component: ChangeInfo
+  }
 ]
 
 const router = new VueRouter({
